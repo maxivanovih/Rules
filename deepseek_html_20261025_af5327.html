@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Багрянство — Правила</title>
+<style>
+  :root {
+    --bg-1: #0a0000;
+    --bg-2: #1a0303;
+    --card: #1f0505;
+    --blood: #b30000;
+    --blood-bright: #ff1a1a;
+    --blood-deep: #6e0000;
+    --blood-glow: rgba(255, 26, 26, .55);
+    --text: #ffe6e6;
+    --muted: #c98a8a;
+    --border: #4a0808;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: radial-gradient(circle at 50% -10%, #3d0000 0%, var(--bg-2) 45%, var(--bg-1) 100%);
+    background-attachment: fixed;
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Фоновые пятна */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 15% 25%, rgba(255,26,26,.08) 0, transparent 25%),
+      radial-gradient(circle at 85% 70%, rgba(179,0,0,.1) 0, transparent 30%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ХЕДЕР */
+  header {
+    text-align: center;
+    padding: 80px 20px 40px;
+    position: relative;
+    z-index: 1;
+  }
+  header h1 {
+    font-size: clamp(2.4rem, 7vw, 4rem);
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    background: linear-gradient(180deg, #ff4d4d 0%, var(--blood-bright) 40%, var(--blood-deep) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 40px rgba(255, 26, 26, .4);
+    margin-bottom: 16px;
+    animation: pulse 3s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { filter: drop-shadow(0 0 12px rgba(255,26,26,.4)); }
+    50% { filter: drop-shadow(0 0 28px rgba(255,26,26,.85)); }
+  }
+  header p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    max-width: 620px;
+    margin: 0 auto;
+    letter-spacing: .5px;
+  }
+
+  /* Кнопка Назад */
+  .back-btn-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+  }
+  .back-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--blood-deep);
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border: 1px solid var(--blood);
+    transition: all 0.3s ease;
+  }
+  .back-btn:hover {
+    background: var(--blood-bright);
+    box-shadow: 0 0 15px var(--blood-glow);
+  }
+
+  /* КОНТЕЙНЕР ПРАВИЛ */
+  .rules-container {
+    max-width: 900px;
+    margin: 40px auto 90px;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  /* БЛОК ПРАВИЛ */
+  .rule-section {
+    background: linear-gradient(160deg, var(--card) 0%, #130202 100%);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--blood-bright);
+    border-radius: 12px;
+    padding: 30px 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+  }
+  .rule-section:hover {
+    border-color: var(--blood);
+    border-left-color: #ff5555;
+    box-shadow: 0 10px 40px rgba(255, 26, 26, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .rule-section h2 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--blood-bright);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-shadow: 0 0 10px var(--blood-glow);
+  }
+
+  .rule-section ol, .rule-section ul {
+    padding-left: 20px;
+    color: var(--text);
+    font-size: 1.05rem;
+  }
+
+  .rule-section li {
+    margin-bottom: 12px;
+  }
+
+  .rule-section li::marker {
+    color: var(--blood-bright);
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+
+  .rule-section b {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255,255,255,0.2);
+  }
+
+  /* ВАЖНЫЕ ПРЕДУПРЕЖДЕНИЯ */
+  .alert-box {
+    background: rgba(255, 0, 0, 0.1);
+    border: 2px dashed #ff0000;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    margin-top: 40px;
+    box-shadow: 0 0 20px rgba(255,0,0,0.2) inset;
+  }
+  .alert-box h3 {
+    color: #ff0000;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+  }
+  .alert-box p {
+    color: #ffcccc;
+    font-size: 1rem;
+  }
+
+  footer {
+    text-align: center;
+    padding: 30px 20px 50px;
+    color: var(--blood-deep);
+    font-size: .85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+  footer span { color: var(--blood-bright); }
+
+  /* Адаптивность */
+  @media (max-width: 600px) {
+    .rule-section { padding: 20px; }
+    .rule-section h2 { font-size: 1.3rem; }
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <h1>Правила</h1>
+    <p>Свод законов сервера «Багрянство». Незнание правил не освобождает от ответственности.</p>
+    <div class="divider"></div>
+  </header>
+
+  <div class="back-btn-container">
+    <a href="https://maxivanovih.github.io/" class="back-btn">🏠 На главную</a>
+  </div>
+
+  <main class="rules-container">
+
+    <!-- ОБЩИЕ ПРАВИЛА -->
+    <div class="rule-section">
+      <h2>⚔️ 1. Общие положения</h2>
+      <ul>
+        <li><b>Адекватность:</b> Уважайте других игроков и администрацию. Токсичное поведение, необоснованные оскорбления и провокации запрещены.</li>
+        <li><b>Читы и взломы:</b> Использование любых сторонних программ (X-Ray, KillAura, Fly, автокликеры, макросы) строго <b>ЗАПРЕЩЕНО</b>. Бан выдаётся навсегда без права на разбан.</li>
+        <li><b>Багоюз:</b> Запрещено использовать ошибки сервера или модов для получения личной выгоды (дюп вещей, выход из мира и т.д.). О найденном баге нужно сообщить администрации.</li>
+        <li><b>Реклама:</b> Запрещено рекламировать сторонние серверы, проекты или продавать аккаунты и игровые ценности за реальные деньги вне магазина сервера.</li>
+      </ul>
+    </div>
+
+    <!-- ИГРОВОЙ ПРОЦЕСС -->
+    <div class="rule-section">
+      <h2>🏝️ 2. Игровой процесс (Technomagic island)</h2>
+      <ul>
+        <li><b>Рейды и Гриферство:</b> Рейды разрешены без согласия другой стороны! Вы можете врываться на чужие базы, разрушать постройки, взрывать, заливать лавой, воровать ресурсы из сундуков и убивать владельцев. Это хардкорное выживание, где каждый сам за себя.</li>
+        <li><b>PvP:</b> Сражения разрешены по всему миру. Единственное исключение — убийство новичков прямо на спавне (в зоне безопасности).</li>
+        <li><b>Остальное запрещено:</b> Несмотря на свободу действий, использование читов, дюп предметов, создание лаг-машин и разрушение спавна строго караются баном.</li>
+        <li><b>Лаги:</b> Убедитесь, что ваши механизмы (из модов Create и др.) не вешают сервер. Чрезмерно нагруженные фермы будут удалены администрацией.</li>
+      </ul>
+    </div>
+
+    <!-- ЧАТ И ОБЩЕНИЕ -->
+    <div class="rule-section">
+      <h2>💬 3. Правила чата</h2>
+      <ul>
+        <li><b>Флуд и спам:</b> Запрещено засорять чат повторяющимися сообщениями, использовать Caps Lock без причины и отправлять огромные сообщения.</li>
+        <li><b>Запрещенный контент:</b> Любые упоминания 18+, нацизма, разжигание межнациональной розни, а также распространение личных данных (доксинг) караются баном.</li>
+        <li><b>Голосовой чат:</b> Если вы используете моды на войс (Simple Voice Chat/Plasmo), правила те же, что и в текстовом чате. Крики в микрофон и шум строго запрещены.</li>
+      </ul>
+    </div>
+
+    <!-- ДОНАТ И АДМИНИСТРАЦИЯ -->
+    <div class="rule-section">
+      <h2>💰 4. Донат и Администрация</h2>
+      <ul>
+        <li><b>Покупка привилегий:</b> Покупая донат, вы соглашаетесь с правилами сервера. Привилегии не дают права нарушать правила или оскорблять других игроков.</li>
+        <li><b>Возврат средств:</b> Возврат денежных средств за купленные привилегии <b>НЕ ПРОИЗВОДИТСЯ</b>.</li>
+        <li><b>Решения админов:</b> Администрация всегда права. Если вы считаете наказание несправедливым, пишите в Discord в канал жалоб (апелляций), а не устраивайте скандал в общем чате.</li>
+      </ul>
+    </div>
+
+    <div class="alert-box">
+      <h3>⚠️ ВАЖНО</h3>
+      <p>Заходя на сервер «Багрянство», вы автоматически соглашаетесь со всеми вышеперечисленными правилами. Нарушение правил ведёт к блокировке аккаунта (от мута до перманентного бана).</p>
+    </div>
+
+  </main>
+
+  <footer>
+    © 2026 · <span>Багрянство</span> · Сделано с 🩸 · GitHub Pages
+  </footer>
+
+</body>
+</html>
